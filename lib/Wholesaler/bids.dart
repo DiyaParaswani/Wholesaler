@@ -6,9 +6,6 @@ import 'package:wholesaler/Wholesaler/authentication_three.dart';
 import 'package:wholesaler/Wholesaler/dashboard.dart';
 import 'package:wholesaler/Wholesaler/myproduct.dart';
 import 'package:wholesaler/Wholesaler/notification.dart';
-
-
-
 import 'package:wholesaler/Wholesaler/addauction.dart';
 import 'package:wholesaler/Wholesaler/auctioncomplete.dart';
 import 'package:wholesaler/Wholesaler/bids.dart';
@@ -17,10 +14,24 @@ import 'package:wholesaler/Wholesaler/notifyretailer.dart';
 import 'package:wholesaler/Wholesaler/order.dart';
 import 'package:wholesaler/Wholesaler/orderstatus.dart';
 import 'package:wholesaler/Wholesaler/payment.dart';
+import 'package:wholesaler/Wholesaler/documents.dart';
+import 'package:wholesaler/Wholesaler/imagepicker.dart';
+import 'package:wholesaler/Wholesaler/namegeneralinfo.dart';
+import 'package:wholesaler/Wholesaler/oneprofile.dart';
+import 'package:wholesaler/Wholesaler/profileinfo.dart';
+import 'package:wholesaler/Wholesaler/mybizz.dart';
+import 'package:wholesaler/Wholesaler/weeklyoff.dart';
 
 
-class Bids extends StatelessWidget {
-  const Bids({super.key});
+class Bids extends StatefulWidget {
+  const Bids({Key? key}) : super(key: key);
+
+  @override
+  _BidsState createState() => _BidsState();
+}
+
+class _BidsState extends State<Bids> {
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -52,8 +63,6 @@ class Bids extends StatelessWidget {
           ),
         ],
       ),
-
-
       body: SingleChildScrollView(
         child: Center(
           child: Padding(
@@ -69,24 +78,18 @@ class Bids extends StatelessWidget {
                       height: 180,
                       width: 180,
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(204, 255, 246,
-                            169), // Background color of the container
-                        borderRadius: BorderRadius.circular(
-                            10), // Border radius of the container
+                        color: Color.fromARGB(204, 255, 246, 169),
+                        borderRadius: BorderRadius.circular(10),
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(
-                            height: 5,
-                          ),
+                          SizedBox(height: 5),
                           Container(
                               width: 120,
                               height: 120,
                               child: Image.asset("assets/potato.jpeg")),
-                          SizedBox(
-                            height: 5,
-                          ),
+                          SizedBox(height: 5),
                           Container(
                             child: Text(
                               "Potato",
@@ -108,9 +111,8 @@ class Bids extends StatelessWidget {
                         height: 80,
                         width: 350,
                         decoration: BoxDecoration(
-                          color: Colors.grey[100], // Background color of the container
-                          borderRadius: BorderRadius.circular(
-                              10), // Border radius of the container
+                          color: Colors.grey[100],
+                          borderRadius: BorderRadius.circular(10),
                         ),
                         child: Row(
                           children: [
@@ -122,9 +124,7 @@ class Bids extends StatelessWidget {
                                   Column(
                                     children: [
                                       Center(child: Text("Opening Price")),
-                                      SizedBox(
-                                        height: 3,
-                                      ),
+                                      SizedBox(height: 3),
                                       Container(
                                         child: Row(
                                           mainAxisAlignment:
@@ -146,7 +146,7 @@ class Bids extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            // below is to draw a seperator
+                            // below is to draw a separator
                             Stack(),
                             SizedBox(width: 50,),
                             // below is of no of people live and time remaining
@@ -512,30 +512,54 @@ class Bids extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: ' ',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_bag),
-            label: 'My Auctions',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
-            label: 'Search',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle_outlined),
-            label: 'Account',
+            label: '',
           ),
         ],
-        selectedItemColor: Colors.lightGreen,
+        selectedItemColor: Colors.grey,
         unselectedItemColor: Colors.grey,
-        currentIndex: 2,
+        currentIndex: _currentIndex,
         onTap: (int index) {
-          // Handle navigation to different pages based on index
+          setState(() {
+            _currentIndex = index;
+          });
+
+          switch (index) {
+            case 0:
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => Dashboard(),
+              ));
+              break;
+            case 1:
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => MyAuction(),
+              ));
+              break;
+            case 2:
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => MyProduct(),
+              ));
+              break;
+            case 3:
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => ProfileScreen(),
+              ));
+              break;
+          }
         },
       ),
     );

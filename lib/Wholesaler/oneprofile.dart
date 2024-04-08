@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:retailer/retailer/dashboard.dart';
-import 'package:retailer/retailer/notification.dart';
-import 'package:retailer/retailer/auctiontoday.dart';
-import 'package:retailer/retailer/payment.dart';
-import 'package:retailer/retailer/mybids.dart';
-import 'package:retailer/retailer/bids.dart';
-import 'package:retailer/retailer/loading.dart';
-import 'package:retailer/retailer/wonauction.dart';
-import 'package:retailer/retailer/lostauction.dart';
-import 'package:retailer/retailer/auctionhouse.dart';
-import 'package:retailer/retailer/deliveryscreen.dart';
-import 'package:retailer/retailer/adddelivery.dart';
-import 'package:retailer/retailer/paymentscreen.dart';
-import 'package:retailer/retailer/paymentdonescreen.dart';
-import 'package:retailer/retailer/trackorder.dart';
-import 'package:retailer/retailer/oneprofile.dart';
-import 'package:retailer/retailer/profileinfo.dart';
-import 'package:retailer/retailer/mybizz.dart';
-import 'package:retailer/retailer/namegeneralinfo.dart';
-import 'package:retailer/retailer/documents.dart';
-import 'package:retailer/retailer/imagepicker.dart';
-import 'package:retailer/retailer/weeklyoff.dart';
+import 'package:wholesaler/Wholesaler/addproduct.dart';
+import 'package:wholesaler/Wholesaler/authentication_one.dart';
+import 'package:wholesaler/Wholesaler/authentication_two.dart';
+import 'package:wholesaler/Wholesaler/authentication_three.dart';
+import 'package:wholesaler/Wholesaler/dashboard.dart';
+import 'package:wholesaler/Wholesaler/myproduct.dart';
+import 'package:wholesaler/Wholesaler/notification.dart';
+import 'package:wholesaler/Wholesaler/addauction.dart';
+import 'package:wholesaler/Wholesaler/auctioncomplete.dart';
+import 'package:wholesaler/Wholesaler/bids.dart';
+import 'package:wholesaler/Wholesaler/myauction.dart';
+import 'package:wholesaler/Wholesaler/notifyretailer.dart';
+import 'package:wholesaler/Wholesaler/order.dart';
+import 'package:wholesaler/Wholesaler/orderstatus.dart';
+import 'package:wholesaler/Wholesaler/payment.dart';
+import 'package:wholesaler/Wholesaler/documents.dart';
+import 'package:wholesaler/Wholesaler/imagepicker.dart';
+import 'package:wholesaler/Wholesaler/namegeneralinfo.dart';
+import 'package:wholesaler/Wholesaler/oneprofile.dart';
+import 'package:wholesaler/Wholesaler/profileinfo.dart';
+import 'package:wholesaler/Wholesaler/mybizz.dart';
+import 'package:wholesaler/Wholesaler/weeklyoff.dart';
 
 void main() {
   runApp(MaterialApp(home: ProfileScreen()));
@@ -89,13 +89,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               },
             ),
             ProfileOption(
-              icon: Icons.monetization_on,
-              label: 'My Bids',
+              icon: Icons.business,
+              label: 'Orders',
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => MyBids(),
+                    builder: (context) => Orders(),
                   ),
                 );
               },
@@ -140,14 +140,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
               icon: Icons.logout,
               label: 'Logout',
               onPressed: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => NextPage(),
-                //   ),
-                // );
+
+
               },
             ),
+
           ],
         ),
       ),
@@ -155,7 +152,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: ' ',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_bag),
@@ -186,12 +183,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
               break;
             case 1:
               Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => AuctionHouse(),
+                builder: (context) => MyAuction(),
               ));
               break;
             case 2:
               Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => BidNow(),
+                builder: (context) => MyProduct(),
               ));
               break;
             case 3:

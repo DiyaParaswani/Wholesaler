@@ -6,9 +6,6 @@ import 'package:wholesaler/Wholesaler/authentication_three.dart';
 import 'package:wholesaler/Wholesaler/dashboard.dart';
 import 'package:wholesaler/Wholesaler/myproduct.dart';
 import 'package:wholesaler/Wholesaler/notification.dart';
-
-
-
 import 'package:wholesaler/Wholesaler/addauction.dart';
 import 'package:wholesaler/Wholesaler/auctioncomplete.dart';
 import 'package:wholesaler/Wholesaler/bids.dart';
@@ -17,7 +14,13 @@ import 'package:wholesaler/Wholesaler/notifyretailer.dart';
 import 'package:wholesaler/Wholesaler/order.dart';
 import 'package:wholesaler/Wholesaler/orderstatus.dart';
 import 'package:wholesaler/Wholesaler/payment.dart';
-
+import 'package:wholesaler/Wholesaler/documents.dart';
+import 'package:wholesaler/Wholesaler/imagepicker.dart';
+import 'package:wholesaler/Wholesaler/namegeneralinfo.dart';
+import 'package:wholesaler/Wholesaler/oneprofile.dart';
+import 'package:wholesaler/Wholesaler/profileinfo.dart';
+import 'package:wholesaler/Wholesaler/mybizz.dart';
+import 'package:wholesaler/Wholesaler/weeklyoff.dart';
 
 void main() {
   runApp(MaterialApp(home: notification(),));
@@ -301,23 +304,22 @@ class _notificationState extends State<notification> {
               break;
             case 1:
               Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => MyProduct(),
+                builder: (context) => MyAuction(),
               ));
               break;
             case 2:
               Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => MyAuction(),
+                builder: (context) => MyProduct(),
               ));
               break;
             case 3:
-              // Navigator.of(context).pushReplacement(MaterialPageRoute(
-              //   builder: (context) => AccountPage(),
-              // ));
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => ProfileScreen(),
+              ));
               break;
           }
         },
       ),
-
     );
   }
 }

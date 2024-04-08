@@ -30,7 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  image_picker: ^0.8.4+3
+  image_picker: ^0.8.4+4
 
 
   animated_splash_screen: ^1.2.0

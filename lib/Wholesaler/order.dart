@@ -6,9 +6,6 @@ import 'package:wholesaler/Wholesaler/authentication_three.dart';
 import 'package:wholesaler/Wholesaler/dashboard.dart';
 import 'package:wholesaler/Wholesaler/myproduct.dart';
 import 'package:wholesaler/Wholesaler/notification.dart';
-
-
-
 import 'package:wholesaler/Wholesaler/addauction.dart';
 import 'package:wholesaler/Wholesaler/auctioncomplete.dart';
 import 'package:wholesaler/Wholesaler/bids.dart';
@@ -17,18 +14,30 @@ import 'package:wholesaler/Wholesaler/notifyretailer.dart';
 import 'package:wholesaler/Wholesaler/order.dart';
 import 'package:wholesaler/Wholesaler/orderstatus.dart';
 import 'package:wholesaler/Wholesaler/payment.dart';
+import 'package:wholesaler/Wholesaler/documents.dart';
+import 'package:wholesaler/Wholesaler/imagepicker.dart';
+import 'package:wholesaler/Wholesaler/namegeneralinfo.dart';
+import 'package:wholesaler/Wholesaler/oneprofile.dart';
+import 'package:wholesaler/Wholesaler/profileinfo.dart';
+import 'package:wholesaler/Wholesaler/mybizz.dart';
+import 'package:wholesaler/Wholesaler/weeklyoff.dart';
 
-class Orders extends StatelessWidget {
-  const Orders({super.key});
+class Orders extends StatefulWidget {
+  const Orders({Key? key}) : super(key: key);
+
+  @override
+  _OrdersState createState() => _OrdersState();
+}
+
+class _OrdersState extends State<Orders> {
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-
       appBar: AppBar(
         backgroundColor: Colors.white,
-
         title: Text(
           "Orders",
           style: TextStyle(fontWeight: FontWeight.bold),
@@ -37,12 +46,11 @@ class Orders extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            // Handle back button press
+            Navigator.of(context).pop();
           },
         ),
-
       ),
-      body:SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           children: [
             Padding(
@@ -123,7 +131,7 @@ class Orders extends StatelessWidget {
                               child: ElevatedButton(
                                 onPressed: () {
                                   Navigator.of(context).push(
-                                    MaterialPageRoute(builder: (context) => Payment()),
+                                    MaterialPageRoute(builder: (context) => OrderStatus()),
                                   );
                                   print('Start clicked');
                                 },
@@ -139,7 +147,7 @@ class Orders extends StatelessWidget {
                                         Colors.lightGreen), // Button border color
                                   ),
                                 ),
-                                child: Text('Payment'),
+                                child: Text('Order Status'),
                               ),
                             ),
                           ),
@@ -153,34 +161,56 @@ class Orders extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
-
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_bag),
-            label: 'My Auctions',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
-            label: 'Search',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle_outlined),
-            label: 'Account',
+            label: '',
           ),
         ],
-        selectedItemColor: Colors.lightGreen,
+        selectedItemColor: Colors.grey,
         unselectedItemColor: Colors.grey,
-        currentIndex: 3,
+        currentIndex: _currentIndex,
         onTap: (int index) {
-          // Handle navigation to different pages based on index
+          setState(() {
+            _currentIndex = index;
+          });
+
+          switch (index) {
+            case 0:
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => Dashboard(),
+              ));
+              break;
+            case 1:
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => MyAuction(),
+              ));
+              break;
+            case 2:
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => MyProduct(),
+              ));
+              break;
+            case 3:
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => ProfileScreen(),
+              ));
+              break;
+          }
         },
       ),
-
     );
   }
 }

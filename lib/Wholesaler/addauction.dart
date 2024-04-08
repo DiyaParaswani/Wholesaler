@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:wholesaler/Wholesaler/addproduct.dart';
 import 'package:wholesaler/Wholesaler/authentication_one.dart';
 import 'package:wholesaler/Wholesaler/authentication_two.dart';
@@ -7,7 +6,6 @@ import 'package:wholesaler/Wholesaler/authentication_three.dart';
 import 'package:wholesaler/Wholesaler/dashboard.dart';
 import 'package:wholesaler/Wholesaler/myproduct.dart';
 import 'package:wholesaler/Wholesaler/notification.dart';
-
 import 'package:wholesaler/Wholesaler/addauction.dart';
 import 'package:wholesaler/Wholesaler/auctioncomplete.dart';
 import 'package:wholesaler/Wholesaler/bids.dart';
@@ -16,6 +14,13 @@ import 'package:wholesaler/Wholesaler/notifyretailer.dart';
 import 'package:wholesaler/Wholesaler/order.dart';
 import 'package:wholesaler/Wholesaler/orderstatus.dart';
 import 'package:wholesaler/Wholesaler/payment.dart';
+import 'package:wholesaler/Wholesaler/documents.dart';
+import 'package:wholesaler/Wholesaler/imagepicker.dart';
+import 'package:wholesaler/Wholesaler/namegeneralinfo.dart';
+import 'package:wholesaler/Wholesaler/oneprofile.dart';
+import 'package:wholesaler/Wholesaler/profileinfo.dart';
+import 'package:wholesaler/Wholesaler/mybizz.dart';
+import 'package:wholesaler/Wholesaler/weeklyoff.dart';
 
 
 import 'package:input_quantity/input_quantity.dart';
@@ -29,6 +34,7 @@ class AddAuction extends StatefulWidget {
 }
 
 class _AddAuctionState extends State<AddAuction> {
+  int _currentIndex=0;
   late DateTime _selectedDateTime;
 
   @override
@@ -307,26 +313,51 @@ class _AddAuctionState extends State<AddAuction> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_bag),
-            label: 'My Auctions',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
-            label: 'Search',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle_outlined),
-            label: 'Account',
+            label: '',
           ),
         ],
-        selectedItemColor: Colors.lightGreen,
+        selectedItemColor: Colors.grey,
         unselectedItemColor: Colors.grey,
-        currentIndex: 2,
+        currentIndex: _currentIndex,
         onTap: (int index) {
-          // Handle navigation to different pages based on index
+          setState(() {
+            _currentIndex = index;
+          });
+
+          switch (index) {
+            case 0:
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => Dashboard(),
+              ));
+              break;
+            case 1:
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => MyAuction(),
+              ));
+              break;
+            case 2:
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => MyProduct(),
+              ));
+              break;
+            case 3:
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => ProfileScreen(),
+              ));
+              break;
+          }
         },
       ),
     );

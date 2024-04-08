@@ -6,9 +6,6 @@ import 'package:wholesaler/Wholesaler/authentication_three.dart';
 import 'package:wholesaler/Wholesaler/dashboard.dart';
 import 'package:wholesaler/Wholesaler/myproduct.dart';
 import 'package:wholesaler/Wholesaler/notification.dart';
-
-
-
 import 'package:wholesaler/Wholesaler/addauction.dart';
 import 'package:wholesaler/Wholesaler/auctioncomplete.dart';
 import 'package:wholesaler/Wholesaler/bids.dart';
@@ -17,9 +14,23 @@ import 'package:wholesaler/Wholesaler/notifyretailer.dart';
 import 'package:wholesaler/Wholesaler/order.dart';
 import 'package:wholesaler/Wholesaler/orderstatus.dart';
 import 'package:wholesaler/Wholesaler/payment.dart';
+import 'package:wholesaler/Wholesaler/documents.dart';
+import 'package:wholesaler/Wholesaler/imagepicker.dart';
+import 'package:wholesaler/Wholesaler/namegeneralinfo.dart';
+import 'package:wholesaler/Wholesaler/oneprofile.dart';
+import 'package:wholesaler/Wholesaler/profileinfo.dart';
+import 'package:wholesaler/Wholesaler/mybizz.dart';
+import 'package:wholesaler/Wholesaler/weeklyoff.dart';
 
-class NotifyRetailer extends StatelessWidget {
-  const NotifyRetailer({super.key});
+class NotifyRetailer extends StatefulWidget {
+  const NotifyRetailer({Key? key}) : super(key: key);
+
+  @override
+  _NotifyRetailerState createState() => _NotifyRetailerState();
+}
+
+class _NotifyRetailerState extends State<NotifyRetailer> {
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -44,13 +55,11 @@ class NotifyRetailer extends StatelessWidget {
         width: MediaQuery.of(context).size.width * 0.9, //50% of screen width
         child: SingleChildScrollView(
           child: Column(
-
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
-
                 color: Color.fromARGB(0, 255, 131, 146),
-                child:Column(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(height: 20),
@@ -60,10 +69,10 @@ class NotifyRetailer extends StatelessWidget {
                           height: 180,
                           width: 180,
                           decoration: BoxDecoration(
-                            color: Color.fromARGB(204, 255, 246,
-                                169), // Background color of the container
-                            borderRadius: BorderRadius.circular(
-                                10), // Border radius of the container
+                            color: Color.fromARGB(
+                                204, 255, 246, 169), // Background color of the container
+                            borderRadius:
+                            BorderRadius.circular(10), // Border radius of the container
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -89,11 +98,11 @@ class NotifyRetailer extends StatelessWidget {
                           ),
                         ),
                       ],
-                    ), ],
+                    ),
+                  ],
                 ),
               ),
               SizedBox(height: 40,),
-              // start opening price textbox
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
@@ -239,34 +248,56 @@ class NotifyRetailer extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
-
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_bag),
-            label: 'My Auctions',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
-            label: 'Search',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle_outlined),
-            label: 'Account',
+            label: '',
           ),
         ],
-        selectedItemColor: Colors.lightGreen,
+        selectedItemColor: Colors.grey,
         unselectedItemColor: Colors.grey,
-        currentIndex: 2,
+        currentIndex: _currentIndex,
         onTap: (int index) {
-          // Handle navigation to different pages based on index
+          setState(() {
+            _currentIndex = index;
+          });
+
+          switch (index) {
+            case 0:
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => Dashboard(),
+              ));
+              break;
+            case 1:
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => MyAuction(),
+              ));
+              break;
+            case 2:
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => MyProduct(),
+              ));
+              break;
+            case 3:
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => ProfileScreen(),
+              ));
+              break;
+          }
         },
       ),
-
     );
   }
 }

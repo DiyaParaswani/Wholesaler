@@ -6,9 +6,6 @@ import 'package:wholesaler/Wholesaler/authentication_three.dart';
 import 'package:wholesaler/Wholesaler/dashboard.dart';
 import 'package:wholesaler/Wholesaler/myproduct.dart';
 import 'package:wholesaler/Wholesaler/notification.dart';
-
-
-
 import 'package:wholesaler/Wholesaler/addauction.dart';
 import 'package:wholesaler/Wholesaler/auctioncomplete.dart';
 import 'package:wholesaler/Wholesaler/bids.dart';
@@ -17,6 +14,15 @@ import 'package:wholesaler/Wholesaler/notifyretailer.dart';
 import 'package:wholesaler/Wholesaler/order.dart';
 import 'package:wholesaler/Wholesaler/orderstatus.dart';
 import 'package:wholesaler/Wholesaler/payment.dart';
+import 'package:wholesaler/Wholesaler/documents.dart';
+import 'package:wholesaler/Wholesaler/imagepicker.dart';
+import 'package:wholesaler/Wholesaler/namegeneralinfo.dart';
+import 'package:wholesaler/Wholesaler/oneprofile.dart';
+import 'package:wholesaler/Wholesaler/profileinfo.dart';
+import 'package:wholesaler/Wholesaler/mybizz.dart';
+import 'package:wholesaler/Wholesaler/weeklyoff.dart';
+
+
 
 class AuctionCompleted extends StatefulWidget {
   const AuctionCompleted({super.key});
@@ -26,6 +32,7 @@ class AuctionCompleted extends StatefulWidget {
 }
 
 class _AuctionCompletedState extends State<AuctionCompleted> with SingleTickerProviderStateMixin {
+  int _currentIndex=0;
   late AnimationController _controller;
   late Animation<double> _animation;
   @override
@@ -90,6 +97,57 @@ class _AuctionCompletedState extends State<AuctionCompleted> with SingleTickerPr
           ),
 
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_bag),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle_outlined),
+            label: '',
+          ),
+        ],
+        selectedItemColor: Colors.grey,
+        unselectedItemColor: Colors.grey,
+        currentIndex: _currentIndex,
+        onTap: (int index) {
+          setState(() {
+            _currentIndex = index;
+          });
+
+          switch (index) {
+            case 0:
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => Dashboard(),
+              ));
+              break;
+            case 1:
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => MyAuction(),
+              ));
+              break;
+            case 2:
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => MyProduct(),
+              ));
+              break;
+            case 3:
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => ProfileScreen(),
+              ));
+              break;
+          }
+        },
       ),
     );
   }
